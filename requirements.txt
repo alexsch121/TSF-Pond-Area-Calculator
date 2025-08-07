@@ -1,0 +1,5 @@
+streamlit==1.25.0
+numpy
+opencv-python
+pillow
+streamlit-drawable-canvas
