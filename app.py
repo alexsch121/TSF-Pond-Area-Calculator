@@ -31,19 +31,20 @@ if uploaded_file:
     st.subheader("Draw a closed shape (polygon) around the area of interest")
     
     bg_image_pil = squared_image.convert("RGB")
+    bg_image_np = np.array(bg_image_pil)
 
     canvas_result = st_canvas(
         fill_color="rgba(255, 0, 0, 0.3)",  # Transparent red fill
         stroke_width=2,
         stroke_color="#FFFFFF",
-        background_image=bg_image_pil,
+        background_image=bg_image_np,
         update_streamlit=True,
-        height=bg_image_pil.height,
-        width=bg_image_pil.width,
+        height=squared_image.height,
+        width=squared_image.width,
         drawing_mode="polygon",  # polygonal shape
         key="canvas",
     )
-
+    print(squared_image.height, squared_image.width)
     if canvas_result.json_data is not None:
         objects = canvas_result.json_data["objects"]
         if objects and len(objects) >= 2:
