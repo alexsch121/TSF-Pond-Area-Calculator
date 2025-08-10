@@ -37,14 +37,14 @@ if uploaded_file:
         fill_color="rgba(255, 0, 0, 0.3)",  # Transparent red fill
         stroke_width=2,
         stroke_color="#FFFFFF",
-        background_image=bg_image_np,
+        background_image=bg_image_pil,
         update_streamlit=True,
         height=squared_image.height,
         width=squared_image.width,
         drawing_mode="polygon",  # polygonal shape
         key="canvas",
     )
-    print(squared_image.height, squared_image.width)
+
     if canvas_result.json_data is not None:
         objects = canvas_result.json_data["objects"]
         if objects and len(objects) >= 2:
