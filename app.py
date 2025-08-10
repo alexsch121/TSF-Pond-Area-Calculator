@@ -24,7 +24,7 @@ uploaded_file = st.file_uploader("Upload a PNG image", type=["png"])
 if uploaded_file:
     image = Image.open(uploaded_file)
     squared_image = pad_to_square(image)
-    maxsize = 500
+    maxsize = 600
     # ✅ Pillow 10+ compatibility
     squared_image.thumbnail((maxsize, maxsize), Image.Resampling.LANCZOS)
     
