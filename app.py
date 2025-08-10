@@ -8,6 +8,7 @@ st.set_page_config(page_title="TSF Pond Area Calculator")
 
 st.title("🟩 TSF Pond Area Calculator")
 
+
 def pad_to_square(image):
     width, height = image.size
     max_dim = max(width, height)
@@ -17,16 +18,16 @@ def pad_to_square(image):
     return ImageOps.expand(image, padding, fill="white")
 
 
-
 # Upload image
 uploaded_file = st.file_uploader("Upload a PNG image", type=["png"])
 
 if uploaded_file:
     image = Image.open(uploaded_file)
     squared_image = pad_to_square(image)
-    #st.image(squared_image, caption="Padded to Square", use_column_width=True)
     maxsize = 800
-    squared_image.thumbnail((maxsize, maxsize), Image.ANTIALIAS)
+    # ✅ Pillow 10+ compatibility
+    squared_image.thumbnail((maxsize, maxsize), Image.Resampling.LANCZOS)
+    
     st.subheader("Draw a closed shape (polygon) around the area of interest")
     
     canvas_result = st_canvas(
