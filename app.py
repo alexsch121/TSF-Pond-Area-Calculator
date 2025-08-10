@@ -1,11 +1,14 @@
 import streamlit as st
-
-# Patch streamlit_drawable_canvas to avoid removed st.image_to_url
+import numpy as np
+import cv2
+from PIL import Image, ImageOps
+from streamlit_drawable_canvas import st_canvas
 import streamlit_drawable_canvas
 import base64
 from io import BytesIO
 from PIL import Image as PILImage
 
+# Patch streamlit_drawable_canvas to avoid removed st.image_to_url
 def _image_to_url(image):
     buf = BytesIO()
     image.save(buf, format="PNG")
@@ -16,10 +19,6 @@ streamlit_drawable_canvas.st_image = type(
     "st_image", (), {"image_to_url": staticmethod(_image_to_url)}
 )
 
-import numpy as np
-import cv2
-from PIL import Image, ImageOps
-from streamlit_drawable_canvas import st_canvas
 
 st.set_page_config(page_title="TSF Pond Area Calculator")
 
