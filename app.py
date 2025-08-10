@@ -30,13 +30,13 @@ if uploaded_file:
     
     st.subheader("Draw a closed shape (polygon) around the area of interest")
     
-    bg_image_np = np.array(squared_image.convert("RGB"))
+    bg_image_pil = squared_image.convert("RGB")
 
     canvas_result = st_canvas(
         fill_color="rgba(255, 0, 0, 0.3)",  # Transparent red fill
         stroke_width=2,
         stroke_color="#FFFFFF",
-        background_image=bg_image_np,
+        background_image=bg_image_pil,
         update_streamlit=True,
         height=squared_image.height,
         width=squared_image.width,
