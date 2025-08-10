@@ -36,7 +36,7 @@ if uploaded_file:
         fill_color="rgba(255, 0, 0, 0.3)",  # Transparent red fill
         stroke_width=2,
         stroke_color="#FFFFFF",
-        background_image=squared_image,
+        background_image=image,
         update_streamlit=True,
         height=squared_image.height,
         width=squared_image.width,
