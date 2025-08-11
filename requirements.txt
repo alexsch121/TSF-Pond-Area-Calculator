@@ -3,3 +3,5 @@ opencv-python-headless
 numpy
 Pillow
 streamlit-drawable-canvas==0.9.3
+streamlit-plotly-events
+plotly
