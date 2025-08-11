@@ -117,11 +117,6 @@ if uploaded_file:
             fillcolor=color.replace("1)", "0.2)"),  # make fill transparent
         )
 
-    # Use plotly_events to capture clicks (left click only)
-    clicked_points = plotly_events(fig, click_event=True, hover_event=False)
-    if clicked_points:
-        st.write("Clicked pointsL", clicked_points)
-
     # Add facility polygon trace
     if st.session_state.facility_points:
         trace = polygon_trace(st.session_state.facility_points, "rgba(0,128,0,1)", "Facility")
@@ -139,7 +134,8 @@ if uploaded_file:
         f"### Current polygon to draw: **{st.session_state.drawing_phase.capitalize()}**"
     )
 
-    
+    # Use plotly_events to capture clicks (left click only)
+    clicked_points = plotly_events(fig, click_event=True, hover_event=False)
 
     # Handle clicks
     if clicked_points:
