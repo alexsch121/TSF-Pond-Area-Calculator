@@ -119,6 +119,8 @@ if uploaded_file:
 
     # Use plotly_events to capture clicks (left click only)
     clicked_points = plotly_events(fig, click_event=True, hover_event=False)
+    if clicked_points:
+        st.write("Clicked pointsL", clicked_points)
 
     # Add facility polygon trace
     if st.session_state.facility_points:
