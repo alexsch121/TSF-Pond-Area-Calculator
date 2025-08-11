@@ -96,7 +96,7 @@ if uploaded_file:
         width=w,
         height=h,
         margin=dict(l=0, r=0, t=0, b=0),
-        dragmode="pan",  # disable zoom/box select, you can change as needed
+        dragmode=False,  # disable zoom/box select, you can change as needed
     )
 
     # Function to convert list of points to Plotly scatter trace
