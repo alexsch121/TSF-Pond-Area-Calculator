@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 import cv2
 from PIL import Image, ImageOps
-import streamlit_image_annotation as sia
+import streamlit_image_annotation.Detection as detection
 
 st.set_page_config(page_title="TSF Pond Area Calculator")
 st.title("🟩 TSF Pond Area Calculator")
@@ -39,7 +39,7 @@ if uploaded_file:
     bg_image_np = np.array(squared_image.convert("RGB"))
 
     # Annotation widget
-    annotations = sia.Detection(
+    annotations = detection(
         bg_image_np,
         stroke_width=2,
         stroke_color="red",
