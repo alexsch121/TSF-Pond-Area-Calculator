@@ -40,11 +40,11 @@ if uploaded_file:
 
     # Annotation widget
     annotations = sia.Detection(
-    bg_image_np,
-    stroke_width=2,
-    stroke_color="red",
-    fill_color="rgba(255,0,0,0.3)",
-    key="annotation",
+        bg_image_np,
+        stroke_width=2,
+        stroke_color="red",
+        fill_color="rgba(255,0,0,0.3)",
+        key="annotation",
     )
 
     if annotations:
