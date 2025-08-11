@@ -9,6 +9,7 @@ st.title("🟩 TSF Pond Area Calculator")
 
 
 def pad_to_square(image):
+    """Pad an image to make it square with white background."""
     width, height = image.size
     max_dim = max(width, height)
     delta_w = max_dim - width
@@ -26,17 +27,18 @@ def pad_to_square(image):
 uploaded_file = st.file_uploader("Upload a PNG image", type=["png"])
 
 if uploaded_file:
+    # Load and resize image
     image = Image.open(uploaded_file)
     squared_image = pad_to_square(image)
     maxsize = 600
     squared_image.thumbnail((maxsize, maxsize), Image.Resampling.LANCZOS)
 
-    st.subheader("Draw polygons around the facility and the pond")
+    st.subheader("Draw polygons around the BRDA and the pond (in that order)")
 
-    # Convert image to RGB numpy array
+    # Convert image to numpy array for annotation
     bg_image_np = np.array(squared_image.convert("RGB"))
 
-    # Annotation tool
+    # Annotation widget
     annotations = st_img_annotation(
         bg_image_np,
         stroke_width=2,
@@ -49,6 +51,7 @@ if uploaded_file:
         areas = []
         for i, poly in enumerate(annotations):
             if "points" in poly and len(poly["points"]) >= 3:
+                # Convert points to OpenCV format
                 pts = np.array(poly["points"], np.int32).reshape((-1, 1, 2))
                 mask = np.zeros(
                     (squared_image.height, squared_image.width), dtype=np.uint8
@@ -64,10 +67,11 @@ if uploaded_file:
             facility_area, pond_area = areas[:2]
             st.markdown(f"✅ **BRDA area**: {facility_area:,} pixels²")
             st.markdown(f"✅ **Pond area**: {pond_area:,} pixels²")
+
             if facility_area > 0:
                 pond_pct = (pond_area / facility_area) * 100
                 st.success(f"🧮 Pond covers **{pond_pct:.2f}%** of the facility area")
             else:
                 st.error("Facility area is zero — cannot calculate percentage.")
         else:
-            st.info("Please draw at least 2 polygons: first for facility, second for pond.")
+            st.info("Please draw at least 2 polygons: first for BRDA, second for pond.")
