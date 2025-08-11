@@ -1,14 +1,8 @@
 import streamlit as st
 import numpy as np
 import cv2
-import PIL
-import streamlit_drawable_canvas
 from PIL import Image, ImageOps
 from streamlit_drawable_canvas import st_canvas
-
-st.write("Streamlit version:", st.__version__)
-st.write("Drawable canvas version:", streamlit_drawable_canvas.__version__)
-st.write("Pillow version:", PIL.__version__)
 
 st.set_page_config(page_title="TSF Pond Area Calculator")
 
